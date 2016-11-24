@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -21,15 +22,31 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Space Invaders" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1lX-dH-bjf">
-                                <rect key="frame" x="129" y="82" width="117" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SpaceInvader" translatesAutoresizingMaskIntoConstraints="NO" id="0rg-iZ-Ule">
+                                <rect key="frame" x="18" y="197" width="339" height="381"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Space Invaders" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="25" translatesAutoresizingMaskIntoConstraints="NO" id="1lX-dH-bjf">
+                                <rect key="frame" x="32" y="28" width="312" height="155"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="155" id="FqJ-je-Y2Z"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="50"/>
+                                <color key="textColor" red="0.98431372549019602" green="0.0" blue="0.023529411764705882" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="1lX-dH-bjf" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="8" id="8no-3W-OgQ"/>
+                            <constraint firstItem="0rg-iZ-Ule" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="2" id="IeW-Aj-KKO"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="0rg-iZ-Ule" secondAttribute="trailing" constant="2" id="MjZ-gZ-gJj"/>
+                            <constraint firstItem="0rg-iZ-Ule" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="N9N-r0-XdN"/>
+                            <constraint firstItem="1lX-dH-bjf" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="16" id="Sqd-1V-paP"/>
+                            <constraint firstItem="0rg-iZ-Ule" firstAttribute="top" secondItem="1lX-dH-bjf" secondAttribute="bottom" constant="14" id="eKN-Bj-4iu"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="0rg-iZ-Ule" secondAttribute="bottom" constant="89" id="gQk-K8-DD9"/>
+                            <constraint firstItem="1lX-dH-bjf" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="sQx-0g-dxH"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="1lX-dH-bjf" secondAttribute="trailing" constant="15" id="zMT-FC-jyN"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -37,4 +54,7 @@
             <point key="canvasLocation" x="52" y="374.66266866566718"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="SpaceInvader" width="2048" height="1536"/>
+    </resources>
 </document>
