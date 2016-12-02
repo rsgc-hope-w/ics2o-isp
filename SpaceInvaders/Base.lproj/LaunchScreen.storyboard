@@ -22,7 +22,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SpaceInvader" translatesAutoresizingMaskIntoConstraints="NO" id="0rg-iZ-Ule">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Title Page" translatesAutoresizingMaskIntoConstraints="NO" id="0rg-iZ-Ule">
                                 <rect key="frame" x="18" y="197" width="339" height="381"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Space Invaders" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="25" translatesAutoresizingMaskIntoConstraints="NO" id="1lX-dH-bjf">
@@ -55,6 +55,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="SpaceInvader" width="2048" height="1536"/>
+        <image name="Title Page" width="1024" height="768"/>
     </resources>
 </document>
