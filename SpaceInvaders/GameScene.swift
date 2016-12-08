@@ -33,10 +33,11 @@ class GameScene: SKScene {
                 enemy.setScale(0.05)
                 addChild(enemy)
                 
-
+                
             }
         }
     }
+    
     // This method lets us move our character with a single touch
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         
@@ -49,20 +50,29 @@ class GameScene: SKScene {
         
         // Printing the location of the touch out in the console
         print(touchLocation.x)
-        print(touchLocation.y)
+        print(character.position.x)
+        
+        // Finding the distance between the two touch points
+        let distance = abs(character.position.x - touchLocation.x)
+        
+        // Now that we have found the distance, we now find the speed
+        
+        let speed :CGFloat = 75
+        
+        let time = distance/speed
         
         // Making your character move horizontally toward your touch
         let destination = CGPoint(x: touchLocation.x, y: character.position.y)
         
         // Create an action
-        let actionMove = SKAction.move(to: destination, duration: 1)
+        let actionMove = SKAction.move(to: destination, duration: TimeInterval(time))
         
         // Tell the Character sprite to move
         character.run(actionMove)
         
+        
+    }
     
-}
-
-
-
+    
+    
 }
