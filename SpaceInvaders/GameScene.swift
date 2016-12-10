@@ -13,7 +13,6 @@ class GameScene: SKScene {
     
     
     // Lets add your character
-    
     let character = SKSpriteNode(imageNamed: "Character")
     
     override func didMove(to view: SKView) {
@@ -31,11 +30,47 @@ class GameScene: SKScene {
                 enemy.anchorPoint = CGPoint(x: 0, y: 0)
                 enemy.position = CGPoint(x: 50 * enemiesX, y: 475 + (enemiesY * 50))
                 enemy.setScale(0.05)
+                
+                // Set a duration value
+                let duration : TimeInterval = 1
+                
+                // Make a wait action
+                let action5SecondWait = SKAction.wait(forDuration: duration)
+                
+                // Make a down location
+                let furtherDownLocation = CGPoint(x: enemy.position.x, y: enemy.position.y - 100)
+                
+                // Make a down action
+                let actionDown = SKAction.move(to: furtherDownLocation, duration: duration)
+                
+                // Make a right location
+                let toTheRightLocation = CGPoint(x: enemy.position.x + 100, y: enemy.position.y)
+                
+                // Make a down action
+                let actionRight = SKAction.move(to: toTheRightLocation, duration: duration)
+                
+                // Make a left location
+                let toTheLeftLocation = CGPoint(x: enemy.position.x - 100, y: enemy.position.y)
+                
+                // Make a left action
+                let actionLeft = SKAction.move(to: toTheLeftLocation, duration: duration)
+                
+                // Create the sequence
+                let actionSequence = SKAction.sequence([action5SecondWait, actionDown, action5SecondWait, actionRight, action5SecondWait, actionDown, action5SecondWait, actionLeft, actionLeft, action5SecondWait, actionDown, actionRight])
+                
+                // Add the enemy to the scene
                 addChild(enemy)
+                
+                // Make the sequence run
+                enemy.run(actionSequence)
+                
                 
                 
             }
         }
+        
+
+        
     }
     
     // This method lets us move our character with a single touch
