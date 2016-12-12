@@ -34,35 +34,71 @@ class GameScene: SKScene {
                 // Set a duration value
                 let duration : TimeInterval = 1
                 
+                // Set a value for how far the enemies move
+                
+                
                 // Make a wait action
-                let action5SecondWait = SKAction.wait(forDuration: duration)
+                let action3SecondWait = SKAction.wait(forDuration: duration)
                 
-                // Make a down location
-                let furtherDownLocation = CGPoint(x: enemy.position.x, y: enemy.position.y - 100)
+                // Make a location for the first action
+                let action1Location = CGPoint(x: enemy.position.x, y: enemy.position.y - 50)
                 
-                // Make a down action
-                let actionDown = SKAction.move(to: furtherDownLocation, duration: duration)
+                // Make the first action
+                let action1 = SKAction.move(to: action1Location, duration: duration)
                 
-                // Make a right location
-                let toTheRightLocation = CGPoint(x: enemy.position.x + 100, y: enemy.position.y)
+                // Make a location for the second action
+                let action2Location = CGPoint(x: enemy.position.x + 50, y: enemy.position.y - 50)
                 
-                // Make a down action
-                let actionRight = SKAction.move(to: toTheRightLocation, duration: duration)
+                // Make the Second action
+                let action2 = SKAction.move(to: action2Location, duration: duration)
                 
-                // Make a left location
-                let toTheLeftLocation = CGPoint(x: enemy.position.x - 100, y: enemy.position.y)
+                // Make a location for the third action
+                let action3Location = CGPoint(x: enemy.position.x + 50, y: enemy.position.y - 100)
                 
-                // Make a left action
-                let actionLeft = SKAction.move(to: toTheLeftLocation, duration: duration)
+                // Make the third action
+                let action3 = SKAction.move(to: action3Location, duration: duration)
+                
+                // Make a location for the fourth action
+                let action4Location = CGPoint(x: enemy.position.x, y: enemy.position.y - 100)
+                
+                // Make the fourth action
+                let action4 = SKAction.move(to: action4Location, duration: duration)
+                
+                // Make a location for the fifth action
+                let action5Location = CGPoint(x: enemy.position.x - 50, y: enemy.position.y - 100)
+                
+                // Make the fifth action
+                let action5 = SKAction.move(to: action5Location, duration: duration)
+                
+                // Make a location for the sixth action
+                let action6Location = CGPoint(x: enemy.position.x - 50, y: enemy.position.y - 150)
+                
+                // Make the sixth action
+                let action6 = SKAction.move(to: action6Location, duration: duration)
+                
+                // Make a location for the seventh action
+                let action7Location = CGPoint(x: enemy.position.x, y: enemy.position.y - 150)
+                
+                // Make the seventh action
+                let action7 = SKAction.move(to: action7Location, duration: duration)
+                
+                // Make a location for the eigth action
+                let action8Location = CGPoint(x: enemy.position.x + 50, y: enemy.position.y - 150)
+                
+                // Make the eigth action
+                let action8 = SKAction.move(to: action8Location, duration: duration)
                 
                 // Create the sequence
-                let actionSequence = SKAction.sequence([action5SecondWait, actionDown, action5SecondWait, actionRight, action5SecondWait, actionDown, action5SecondWait, actionLeft, actionLeft, action5SecondWait, actionDown, actionRight])
+                let actionSequence = SKAction.sequence([action3SecondWait, action1, action3SecondWait, action2, action3SecondWait, action3, action3SecondWait, action4, action3SecondWait, action5, action3SecondWait, action6, action3SecondWait, action7, action3SecondWait])
                 
                 // Add the enemy to the scene
                 addChild(enemy)
                 
+                // Set the sequence up to run forever
+                let actionRepeatSequence = SKAction.repeatForever(actionSequence)
+                
                 // Make the sequence run
-                enemy.run(actionSequence)
+                enemy.run(actionRepeatSequence)
                 
                 
                 
