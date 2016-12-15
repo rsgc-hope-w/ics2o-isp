@@ -23,6 +23,7 @@ class GameScene: SKScene {
         addChild(character)
         character.setScale(1.5)
         
+        
         // Adding the enemies for the first time
         for enemiesY in 1...4 {
             for enemiesX in 1...6 {
@@ -89,13 +90,13 @@ class GameScene: SKScene {
                 let action8 = SKAction.move(to: action8Location, duration: duration)
                 
                 // Create the sequence
-                let actionSequence = SKAction.sequence([action3SecondWait, action1, action3SecondWait, action2, action3SecondWait, action3, action3SecondWait, action4, action3SecondWait, action5, action3SecondWait, action6, action3SecondWait, action7, action3SecondWait])
+                let EnemyActionSequence = SKAction.sequence([action3SecondWait, action1, action3SecondWait, action2, action3SecondWait, action3, action3SecondWait, action4, action3SecondWait, action5, action3SecondWait, action6, action3SecondWait, action7, action3SecondWait])
                 
                 // Add the enemy to the scene
                 addChild(enemy)
                 
                 // Set the sequence up to run forever
-                let actionRepeatSequence = SKAction.repeatForever(actionSequence)
+                let actionRepeatSequence = SKAction.repeatForever(EnemyActionSequence)
                 
                 // Make the sequence run
                 enemy.run(actionRepeatSequence)
@@ -105,7 +106,7 @@ class GameScene: SKScene {
             }
         }
         
-
+        
         
     }
     
@@ -141,9 +142,40 @@ class GameScene: SKScene {
         // Tell the Character sprite to move
         character.run(actionMove)
         
+        shootEnemy()
+        
         
     }
     
-    
+    // Let's make a simple way to shoot the enemies
+    func shootEnemy () {
+        
+        // Create an instance of the ammunition
+        let ammunition = SKSpriteNode(imageNamed: "Ammunition")
+        
+        // Define the starting point of the ammunition
+        let ammunitionStartingPosition = CGPoint(x: character.position.x, y: character.position.y)
+        ammunition.position = ammunitionStartingPosition
+        ammunition.setScale(0.01)
+        ammunition.zPosition = 3
+        
+        // Add the ammunition to the scene
+        addChild(ammunition)
+        
+        // Move the ammunition
+        let endingPosition = CGPoint(x: character.position.x, y: size.height + 5)
+        let ammunitionMove = SKAction.move(to: endingPosition, duration: 5)
+        
+        
+        // Removing the ammunition after being fired
+        let actionRemove = SKAction.removeFromParent()
+        
+        // First ammunition Move is happening
+        // Then after it is done, actionRemove takes its place
+        let actionSequence = SKAction.sequence([ammunitionMove, actionRemove])
+        ammunition.run(actionSequence)
+        
+        
+    }
     
 }
