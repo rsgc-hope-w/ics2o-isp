@@ -14,7 +14,7 @@ class GameScene: SKScene {
     
     // Lets add your character
     let character = SKSpriteNode(imageNamed: "Character")
-    
+
     override func didMove(to view: SKView) {
         backgroundColor = SKColor.black
         
@@ -23,13 +23,19 @@ class GameScene: SKScene {
         addChild(character)
         character.setScale(1.5)
         
+        spawnEnemies()
         
+    }
+    
+    func spawnEnemies() {
         // Adding the enemies for the first time
         for enemiesY in 1...4 {
             for enemiesX in 1...6 {
                 let enemy = SKSpriteNode(imageNamed: "Enemies")
+                
                 enemy.anchorPoint = CGPoint(x: 0, y: 0)
                 enemy.position = CGPoint(x: 50 * enemiesX, y: 475 + (enemiesY * 50))
+                enemy.name = "enemy"
                 enemy.setScale(0.05)
                 
                 // Set a duration value
@@ -90,7 +96,7 @@ class GameScene: SKScene {
                 let action8 = SKAction.move(to: action8Location, duration: duration)
                 
                 // Create the sequence
-                let EnemyActionSequence = SKAction.sequence([action3SecondWait, action1, action3SecondWait, action2, action3SecondWait, action3, action3SecondWait, action4, action3SecondWait, action5, action3SecondWait, action6, action3SecondWait, action7, action3SecondWait])
+                let EnemyActionSequence = SKAction.sequence([action3SecondWait, action1, action3SecondWait, action2, action3SecondWait, action3, action3SecondWait, action4, action3SecondWait, action5, action3SecondWait, action6, action3SecondWait, action7, action3SecondWait, action8])
                 
                 // Add the enemy to the scene
                 addChild(enemy)
@@ -101,12 +107,14 @@ class GameScene: SKScene {
                 // Make the sequence run
                 enemy.run(actionRepeatSequence)
                 
-                
-                
             }
         }
-        
-        
+    }
+    
+    // This is a function that runs everytime SpriteKit updates the game frame
+    override func update(_ currentTime: TimeInterval) {
+        // Check collisions between ammunition and Enemies
+        checkCollisions()
         
     }
     
@@ -143,8 +151,6 @@ class GameScene: SKScene {
         character.run(actionMove)
         
         shootEnemy()
-        
-        
     }
     
     // Let's make a simple way to shoot the enemies
@@ -157,7 +163,11 @@ class GameScene: SKScene {
         let ammunitionStartingPosition = CGPoint(x: character.position.x, y: character.position.y)
         ammunition.position = ammunitionStartingPosition
         ammunition.setScale(0.01)
-        ammunition.zPosition = 3
+        ammunition.zPosition = 15
+        
+        // Give the obstacle a name
+        ammunition.name = "ammunition"
+        
         
         // Add the ammunition to the scene
         addChild(ammunition)
@@ -175,7 +185,43 @@ class GameScene: SKScene {
         let actionSequence = SKAction.sequence([ammunitionMove, actionRemove])
         ammunition.run(actionSequence)
         
+    }
+
+    // This function checks for collisions between the enemies and the ammunition
+    func checkCollisions() {
+    
+        // Now find all of the enemies currently colliding with the ammunition
+        enumerateChildNodes(withName: "enemy", using: {
+            node, _ in
+            
+            // Get a reference
+            let enemy = node as! SKSpriteNode
+            self.checkBulletHit(for: enemy)
+            
+        })
         
     }
+    
+    // This function checks for collisions with all bullets for a given enemy
+    func checkBulletHit(for enemy : SKSpriteNode) {
+
+        // Now find all of the bullets currently colliding with this single piece of ammunition
+        enumerateChildNodes(withName: "ammunition", using: {
+            node, _ in
+            
+            // Get a reference
+            let ammunition = node as! SKSpriteNode
+            
+            // Check to see if the enemies are colliding with the ammunition
+            if enemy.frame.intersects(ammunition.frame) {
+                // This ammunition hits the enemies
+                enemy.removeFromParent()
+                ammunition.removeFromParent()
+            }
+            
+        })
+
+    }
+
     
 }
