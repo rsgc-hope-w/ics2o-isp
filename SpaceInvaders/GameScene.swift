@@ -384,12 +384,28 @@ class GameScene: SKScene {
     }
     
     // This method lets us move our character with a single touch
+    // This method lets us move our character with a single touch
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         
         // Our fingers are big when we touch a screen
         guard let touch = touches.first else {
             return
         }
+        // Get the location of the first touch
+        let touchLocation = touch.location(in: self)
+        
+        // Printing the location of the touch out in the console
+        print(touchLocation.x)
+        print(character.position.x)
+        
+        // Finding the distance between the two touch points
+        let distance = abs(character.position.x - touchLocation.x)
+        
+        // Now that we have found the distance, we now find the speed
+        
+        let speed :CGFloat = 75
+        
+        let time = distance/speed
         
         // Making your character move horizontally toward your touch
         let destination = CGPoint(x: touchLocation.x, y: character.position.y)
@@ -397,53 +413,15 @@ class GameScene: SKScene {
         // Create an action
         let actionMove = SKAction.move(to: destination, duration: TimeInterval(time))
         
-        // Tell the Character sprite to move
-        character.run(actionMove)
+        // If top half of the screen, shoot, if bottom half, move
+        if touchLocation.y >= size.height / 2 {
+            shootEnemy()
+        } else {
+            character.run(actionMove)
+            
+            
+        }
         
-        shootEnemy()
+        
     }
-    // Get the location of the first touch
-    let touchLocation = (in: self)
-    
-    
-    // If the tap is in the top half of the screen, allow the ammunition to shoot
-    if touchLocation.y > self.size.height / 2 {
-    
-    shootEnemy()
-    } else {
-    character.run(actionMove)
-    
-    // Printing the location of the touch out in the console
-    print(touchLocation.x)
-    print(character.position.x)
-    
-    // Finding the distance between the two touch points
-    let distance = abs(character.position.x - touch.Location.x)
-    
-    // Now that we have found the distance, we now find the speed
-    
-    let speed :CGFloat = 75
-    
-    let time = distance/speed
-    
-    // Making your character move horizontally toward your touch
-    let destination = CGPoint(x: touchLocation.x, y: character.position.y)
-    
-    
-    }
-    // Printing if you won or if you lost
-    if enemy.position.x == character.position.x {
-    gameOverLabel = SKLabelNode(fontName: "Chalkduster")
-    gameOverLabel.text = "Game Over"
-    gameOverLabel.horizontalAllignmentMode = .left
-    gameOverLabel.position = CGPoint(x: size.width / 2, y: size.height / 2)
-    addChild(gameOverLabel)
-    
-    if nodes = 1 {
-    youWinLabel = SKLabelNode(fontName: "Chalkduster")
-    youWinLabel.text = "You Win"
-    youWinLabel.horizontalAllignmentMode = .left
-    youWinLabel.position = CGPoint(x: size.width / 2, y: size.height / 2)
-    addChild(youWinLabel)
-    
 }
