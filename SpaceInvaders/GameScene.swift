@@ -40,7 +40,7 @@ class GameScene: SKScene {
                 enemy.setScale(0.05)
                 
                 // Set a duration value
-                let duration : TimeInterval = 2
+                let duration : TimeInterval = 1
                 
                 // Set a value for how far the enemies move
                 
@@ -295,8 +295,7 @@ class GameScene: SKScene {
                 // Add the enemy to the scene
                 addChild(enemy)
                 
-                // Set the sequence up to run forever
-                let actionRepeatSequence = SKAction.repeatForever(EnemyActionSequence)
+
                 
                 // Make the sequence run
                 enemy.run(actionRepeatSequence)
